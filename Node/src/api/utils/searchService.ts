@@ -29,7 +29,7 @@ export async function searchChannel(id: string, limit: number) {
         'yt-formatted-string[id="video-title"][class="style-scope ytd-rich-grid-media"]'
     );
 
-    for (let i = 0; i < Math.min(limit, videosHandles.length); i++) {
+    for (let i = 0; i < limit; i++) {
         try {
             const handle = videosHandles[i];
             const videoTitle = await page.evaluate(element => element.textContent, handle);
