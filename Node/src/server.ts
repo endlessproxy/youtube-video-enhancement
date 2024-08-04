@@ -19,7 +19,7 @@ app.post("/api/channel/:id/:limit", async (req, res) => {
     return res.json(videosArr);
 });
 
-const port = process.env.PORT;
+const port = process.env.PORT || 8000;
 
 app.listen(port, () => {
     console.log(`\n- Server running on http://localhost:${port}\n`);
