@@ -5,23 +5,22 @@ import { searchChannel } from "./api/utils/searchService";
 dotenv.config()
 
 const app = Express();
-const port = process.env.PORT;
 
 app.get("/", (req, res) => {
     res.send("Working!");
 });
 
-app.post("/api/channel/:id/:limit", (req, res) => {
+app.post("/api/channel/:id/:limit", async (req, res) => {
     const channelId = req.params["id"];
     const maxVideoLimit: number = parseInt(req.params["limit"]);
 
-    try {
-        searchChannel(channelId, maxVideoLimit);
-    } catch (error) {
-        console.error("Algo deu errado: ", error);
-    }
+    const videosArr = await searchChannel(channelId, maxVideoLimit);
+
+    return res.json(videosArr);
 });
 
-app.listen(port, () => { 
-    console.log(`\n- Server running on http://localhost:${port}\n`); 
+const port = process.env.PORT;
+
+app.listen(port, () => {
+    console.log(`\n- Server running on http://localhost:${port}\n`);
 });

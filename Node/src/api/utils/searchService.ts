@@ -2,23 +2,19 @@ import puppeteer, { Browser, Page } from "puppeteer";
 
 class Video {
     Title: string;
-    Description: string;
 
-    constructor(title: string, description: string) {
+    constructor(title: string) {
         this.Title = title;
-        this.Description = description;
     }
 };
 
-const videosArr: Video[] = [];
-
 export async function searchChannel(id: string, limit: number) {
-    const browser: Browser = await puppeteer.launch({ headless: false });
+    const browser: Browser = await puppeteer.launch({ headless: true });
     const page: Page = await browser.newPage();
+    const videosArr: Video[] = [];
 
     await page.goto(`https://youtube.com/@${id}`);
 
-    const videoTabElement: string = '';
     await page.waitForSelector('yt-tab-shape[tab-title="Videos"][class="yt-tab-shape-wiz yt-tab-shape-wiz--host-clickable"]')
         .then(async tab => {
             if (tab) {
@@ -27,5 +23,27 @@ export async function searchChannel(id: string, limit: number) {
             return;
         });
 
+    await page.waitForSelector('yt-formatted-string[id="video-title"][class="style-scope ytd-rich-grid-media"]');
+
+    const videosHandles = await page.$$(
+        'yt-formatted-string[id="video-title"][class="style-scope ytd-rich-grid-media"]'
+    );
+
+    for (let i = 0; i < Math.min(limit, videosHandles.length); i++) {
+        try {
+            const handle = videosHandles[i];
+            const videoTitle = await page.evaluate(element => element.textContent, handle);
+
+            if (videoTitle) {
+                const newVideo = new Video(videoTitle.trim());
+                videosArr.push(newVideo);
+            }
+        } catch (error) {
+            console.error("Ocorreu um erro: ", error);
+        }
+    }
+
     await browser.close();
+
+    return videosArr;
 };
