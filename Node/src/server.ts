@@ -1,6 +1,7 @@
 import Express from "express";
 import dotenv from "dotenv";
 import { searchChannel } from "./api/utils/searchService";
+import { initFunc } from "./api/utils/initService";
 
 dotenv.config()
 
@@ -10,7 +11,7 @@ app.get("/", (req, res) => {
     res.send("Working!");
 });
 
-app.post("/api/channel/:id/:limit", async (req, res) => {
+app.get("/api/channel/:id/:limit", async (req, res) => {
     const channelId = req.params["id"];
     const maxVideoLimit: number = parseInt(req.params["limit"]);
 
@@ -19,8 +20,6 @@ app.post("/api/channel/:id/:limit", async (req, res) => {
     return res.json(videosArr);
 });
 
-const port = process.env.PORT || 8000;
+const port = process.env.PORT || 8023;
 
-app.listen(port, () => {
-    console.log(`\n- Server running on http://localhost:${port}\n`);
-});
+app.listen(port, initFunc);
