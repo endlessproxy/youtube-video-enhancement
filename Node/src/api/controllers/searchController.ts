@@ -1,12 +1,5 @@
 import puppeteer, { Browser, Page } from "puppeteer";
-
-class Video {
-    Title: string;
-
-    constructor(title: string) {
-        this.Title = title;
-    }
-};
+import Video from "../models/videoClass";
 
 export async function searchChannel(id: string, limit: number) {
     const browser: Browser = await puppeteer.launch({ headless: true });
