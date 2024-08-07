@@ -1,16 +1,24 @@
 import { Router } from "express";
 import { searchChannel } from "../controllers/searchController";
+import { title } from "process";
+import Video from "../models/videoClass";
 
 const router = Router();
 
-router.get("/:id/:limit", async (req, res) => {
+export let videos: any;
+
+router.post("/:id/:limit", async (req, res) => {
     const channelId = req.params.id;
     const videosLimit = parseInt(req.params.limit);
 
     try {
-        const videos = await searchChannel(channelId, videosLimit);
-        res.json(videos);
+        videos = await searchChannel(channelId, videosLimit);
+
+        if (videos) {
+            res.status(201).send("Status: Created!")
+        }
     } catch (err) {
+        console.error(err)
         res.status(500).send("Error searching channel! :(");
     }
 });

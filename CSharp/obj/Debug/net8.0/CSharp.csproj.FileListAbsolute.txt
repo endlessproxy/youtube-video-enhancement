@@ -1,6 +1,0 @@
-c:\Users\andre\Documents\Projetos\youtube-video-enhancement\CSharp\bin\Debug\net8.0\CSharp.exe
-c:\Users\andre\Documents\Projetos\youtube-video-enhancement\CSharp\bin\Debug\net8.0\CSharp.dll
-c:\Users\andre\Documents\Projetos\youtube-video-enhancement\CSharp\bin\Debug\net8.0\Microsoft.OpenApi.dll
-c:\Users\andre\Documents\Projetos\youtube-video-enhancement\CSharp\bin\Debug\net8.0\Swashbuckle.AspNetCore.Swagger.dll
-c:\Users\andre\Documents\Projetos\youtube-video-enhancement\CSharp\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerGen.dll
-c:\Users\andre\Documents\Projetos\youtube-video-enhancement\CSharp\bin\Debug\net8.0\Swashbuckle.AspNetCore.SwaggerUI.dll
