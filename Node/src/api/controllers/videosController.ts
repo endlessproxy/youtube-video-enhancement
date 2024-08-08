@@ -2,7 +2,7 @@ import { Request, Response } from "express";
 import axios from "axios";
 import { GoogleGenerativeAI } from "@google/generative-ai";
 
-const genAI = new GoogleGenerativeAI("AIzaSyDCwYezfdWMrVY5TxQjGA2XTbb0S7TVDiA");
+const genAI = new GoogleGenerativeAI("GEMINI API KEY");
 const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" });
 
 const aiTraining =
