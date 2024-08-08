@@ -1,10 +1,11 @@
-import { Router } from "express";
-import { videos } from "./searchRoute";
+import { Router, Request, Response } from "express";
+import { analyzeVideos } from "../controllers/videosController";
 
 const router = Router();
 
-router.get("/videos", async (req, res) => {
-    res.send(videos);
-})
+router.get("", async (req: Request, res: Response) => {
+    const result = await analyzeVideos(req, res);
+    res.send(result);
+});
 
 export default router;

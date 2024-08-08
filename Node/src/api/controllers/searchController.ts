@@ -1,6 +1,8 @@
 import puppeteer, { Browser, Page } from "puppeteer";
 import Video from "../models/videoClass";
 
+export const titleArr: string[] = [];
+
 export async function searchChannel(id: string, limit: number) {
     const browser: Browser = await puppeteer.launch({ headless: true });
     const page: Page = await browser.newPage();
@@ -37,6 +39,9 @@ export async function searchChannel(id: string, limit: number) {
     }
 
     await browser.close();
+    
+    titleArr.length = 0;
+    titleArr.push(...videosArr.map(t => t.Title));
 
-    return videosArr;
+    return titleArr;
 };
