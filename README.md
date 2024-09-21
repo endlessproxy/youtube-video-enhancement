@@ -1,4 +1,4 @@
-# Backend: IA para analisar e otimizar títulos de vídeos do YouTube
+# Backend: IA para analisar e melhorar títulos de vídeos do YouTube
 
 ## Sobre o Projeto
 Esse projeto utiliza a IA Gemini do Google para analisar os títulos dos vídeos de um canal no YouTube e sugerir otimizações para melhorar a performance do conteúdo.
